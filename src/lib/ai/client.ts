@@ -11,7 +11,11 @@ type Effort = "low" | "medium" | "high" | "xhigh" | "max";
 
 let client: Anthropic | null = null;
 export function anthropic(): Anthropic {
-  if (!client) client = new Anthropic({ maxRetries: 3 });
+  if (!client) {
+    // Keys not scoped to a workspace must name one on every request.
+    const workspace = process.env.ANTHROPIC_WORKSPACE_ID;
+    client = new Anthropic({ maxRetries: 3, ...(workspace ? { defaultHeaders: { "anthropic-workspace-id": workspace } } : {}) });
+  }
   return client;
 }
 
