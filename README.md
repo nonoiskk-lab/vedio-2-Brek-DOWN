@@ -90,7 +90,7 @@ carries `user_id`, so RLS is a single indexed predicate (`user_id = auth.uid()`)
 
 ## Setup
 
-1. **Supabase**: create a project. Run `supabase/migrations/0001_init.sql` (SQL editor, or `supabase db push`). This creates tables, RLS
+1. **Supabase**: create a project. Run the files in `supabase/migrations/` in order (SQL editor, or `supabase db push`). This creates tables, RLS
    policies, the signup trigger, and the private `sources` storage bucket.
 2. **Auth URLs** (Supabase → Authentication → URL Configuration): set the Site URL to your app URL and add `https://<your-app>/auth/callback`
    (and `http://localhost:3000/auth/callback` for local dev) as a redirect URL.
